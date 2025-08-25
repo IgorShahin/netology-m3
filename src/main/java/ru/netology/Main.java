@@ -7,12 +7,26 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        YearService service = new YearService();
+        YearService yearService = new YearService();
 
-        System.out.println("Введите год в формате yyyy");
-        int year = scanner.nextInt();
+        int score = 0;
 
-        int days = service.getDaysInYear(year);
-        System.out.println("Количество дней " + days);
+        while (true) {
+            System.out.println("Введите год:");
+            int year = scanner.nextInt();
+
+            System.out.println("Введите количество дней:");
+            int userDays = scanner.nextInt();
+
+            int correctDays = yearService.getDaysInYear(year);
+
+            if (userDays == correctDays) {
+                score++;
+            } else {
+                System.out.println("Неправильно! В этом году " + correctDays + " дней!");
+                System.out.println("Набрано очков: " + score);
+                break;
+            }
+        }
     }
 }
